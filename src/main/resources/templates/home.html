@@ -1,23 +1,22 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8/">
-
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"></head>
 <body>
 
 <div th:each="pedido : ${pedidos}">
-    <div th:text="{pedidos.nomeProduto}">nome do produto</div>
-    <div>Valor: <span>200,99</span></div>
-    <div>Data da Entrega: <span>10/02/2020</span></div>
+    <div th:text="${pedido.nome}">nome do produto</div>
+    <div>Valor: <span th:text="${pedido.valor}">200,99</span></div>
+    <div>Data da Entrega: <span th:text="${pedido.data}">10/02/2020</span></div>
     <div>Produto</div>
-    <div>url do produto</div>
+    <div> <input th:value="${pedido.urlProduto}"  value="url do produto"></div>
     <div>descrição</div>
     <div>
-        <textarea>descrição do pedido</textarea>
+        <textarea th:text="${pedido.descricao}">descrição do pedido</textarea>
     </div>
     <div>
-        <img src=""/>
+        <img th:src="${pedido.urlImagem}" src=""/>
     </div>
 </div>
 </body>

@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Pedido;
+import com.example.demo.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +15,13 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private PedidoRepository repository;
 
-
-    @PersistenceContext
-    private EntityManager entityManager;
     @GetMapping("/")
-    public String home  (Model model) {
-        Query query = entityManager.createQuery("select p from Pedido p", Pedido.class);
-
-        List<Pedido> pedidos = query.getResultList();
+    public String home(Model model) {
+        List<Pedido> pedidos = repository.findAll();
         model.addAttribute("pedidos", pedidos);
-
         return "home";
     }
 }

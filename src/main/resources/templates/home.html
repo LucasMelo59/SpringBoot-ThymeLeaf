@@ -1,14 +1,14 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <meta charset="UTF-8/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<head th:replace="~{base :: head}">
 </head>
 <body>
+
+<div th:replace="~{ base :: logo}">
+
+</div>
 <div class="container">
-<div class="jumbotron mb-0">
-    <h1 class="display-4" >Meus pedidos</h1>
+<div th:replace="~{base :: titulo('Meus Pedidos')}">
 </div>
 
     <nav class="navbar navbar-expand navbar-light by-light d-flex justify-content-between mb-3">
@@ -20,7 +20,7 @@
         </div>
        <a href="pedido/formulario" ><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Novo</button> </a>
     </nav>
-    <div class="card" th:each="pedido : ${pedidos}">
+    <div class="card mb-3" th:each="pedido : ${pedidos}">
         <div class="card-header" th:text="${pedido.nome}">nome do produto</div>
         <div class="card-body">
             <div class="row">
